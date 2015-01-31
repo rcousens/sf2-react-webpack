@@ -13,7 +13,7 @@ class User extends BaseUser
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="guid")
      * @ORM\GeneratedValue(strategy="UUID")
      */
     protected $id;

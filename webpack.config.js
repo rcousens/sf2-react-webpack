@@ -1,11 +1,17 @@
+var path = require('path');
+
 var webpack = require('webpack');
+var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
 
 module.exports = {
-    entry: './web/app/entry.js',
+    entry: {
+        //test: "./web/app/entry.js",
+        login: "./web/app/page/login/login.js"
+    },
     output: {
-        path: './web/dist',
+        path: path.join(__dirname, "web/dist"),
         publicPath: 'http://local.dev:8080/dist/',
-        filename: 'bundle.js'
+        filename: '[name].entry.chunk.js'
     },
     module: {
         loaders: [
@@ -23,6 +29,7 @@ module.exports = {
             $: "jquery",
             jQuery: "jquery",
             "window.jQuery": "jquery"
-        })
+        }),
+        new CommonsChunkPlugin("commons.chunk.js")
     ]
 };
