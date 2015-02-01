@@ -1,4 +1,4 @@
-//var bootstrap = require('bootstrap');
+var bootstrap = require('bootstrap');
 require('bootstrap/less/bootstrap.less');
 require('font-awesome/less/font-awesome.less');
 require('./login.css');

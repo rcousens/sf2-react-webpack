@@ -6,11 +6,12 @@ var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
 module.exports = {
     entry: {
         //test: "./web/app/entry.js",
-        login: "./web/app/page/login/login.js"
+        login: "./web/app/page/login/login.js",
+        dashboard: "./web/app/page/dashboard/dashboard.js"
     },
     output: {
         path: path.join(__dirname, "web/dist"),
-        publicPath: 'http://local.dev:8080/dist/',
+        publicPath: 'http://local.dev/dist/',
         filename: '[name].entry.chunk.js'
     },
     module: {

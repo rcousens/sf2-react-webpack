@@ -18,7 +18,7 @@ var ForgotScreen = React.createClass({
                             <input type="email" defaultValue={username} onChange={this.handleUsernameChange} className="form-control" id="inputEmail" placeholder="Email Address" />
                         </div>
                         <br />
-                        <button type="submit" className="btn btn-default">Send Reset Password Email</button>
+                        <button type="submit" className="btn btn-danger">Send Reset Password Email</button>
                     </form>
                 </div>
             </div>

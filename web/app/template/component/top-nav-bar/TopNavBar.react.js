@@ -3,45 +3,11 @@ var Link = require('react-router').Link;
 var State = require('react-router').State;
 
 var TopNavBar = React.createClass({
-    mixins: [ State ],
-    logout: function() {
-        this.props.logoutCallback();
-    },
     render: function () {
-        var homeActive = this.isActive('app') ? 'active' : '';
-        var stuffActive, demoActive, loginActive = '';
-        if (this.props.loggedIn) {
-            stuffActive = this.isActive('stuff') ? 'active' : '';
-            demoActive = this.isActive('demo') ? 'active' : '';
-            loginActive = this.isActive('login') ? 'active' : '';
-        }
-        var loggedIn = this.props.loggedIn ? <li><a href="#" onClick={this.logout}>Logout ({this.props.username})</a></li> : <li className={loginActive}><Link to="login">Login</Link></li>;
 
-        var navbar;
-        if (this.props.loggedIn) {
-            navbar = (<div id="navbar" className="collapse navbar-collapse">
-                <ul className="nav navbar-nav">
-                    <li className={homeActive}><Link to="app">Home</Link></li>
-                    <li className={stuffActive}><Link to="stuff">Stuff</Link></li>
-                    <li className={demoActive}><Link to="demo">React Demo</Link></li>
-                    <li><Link to="/nowhere" className="nav-link">Nowhere</Link></li>
-                </ul>
-                <ul className="nav navbar-nav navbar-right">
-                        {loggedIn}
-                </ul>
-            </div>);
-        } else {
-            navbar = (<div id="navbar" className="collapse navbar-collapse">
-                <ul className="nav navbar-nav">
-                    <li className={homeActive}><Link to="app">Home</Link></li>
-                </ul>
-                <ul className="nav navbar-nav navbar-right">
-                        {loggedIn}
-                </ul>
-            </div>);
-
-        }
-
+        var dashboardActive = (this.props.active === 'dashboard') ? 'active' : '';
+        var teamActive = (this.props.active === 'team') ? 'active' : '';
+        var username = this.props.username;
         return (
             <nav className="navbar navbar-default navbar-fixed-top">
                 <div className="container">
@@ -52,9 +18,17 @@ var TopNavBar = React.createClass({
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
-                        <a className="navbar-brand" href="#">Project name</a>
+                        <a className="navbar-brand" href="#">Team Spirit</a>
                     </div>
-            {navbar}
+                    <div id="navbar" className="collapse navbar-collapse">
+                        <ul className="nav navbar-nav">
+                            <li className={dashboardActive}><Link to="dashboard">Dashboard</Link></li>
+                            <li className={teamActive}><a href="#">Team</a></li>
+                        </ul>
+                        <ul className="nav navbar-nav navbar-right">
+                        <li><a href="#"><i className="fa fa-fw fa-user"></i>{username}</a></li>
+                        </ul>
+                    </div>
                 </div>
             </nav>
         )

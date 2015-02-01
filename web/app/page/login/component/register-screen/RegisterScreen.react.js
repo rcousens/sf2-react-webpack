@@ -81,7 +81,7 @@ var RegisterScreen = React.createClass({
                             <input type="password" value={this.state.password_confirm} onChange={this.handlePasswordConfirmChange} className="form-control" id="password_confirm" name="fos_user_registration_form[plainPassword][second]" placeholder="Confirm Password" />
                         </div>
                         <br />
-                        <button type="button" onClick={this.doRegister} className="btn btn-default">Create Account</button>
+                        <button type="button" onClick={this.doRegister} className="btn btn-primary">Create Account</button>
                         {message}
                     </form>
                 </div>

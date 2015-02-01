@@ -30,7 +30,7 @@ var LoginScreen = React.createClass({
                         </div>
                         <br />
                         {message}
-                        <button id="_submit" name="_submit" type="submit" className="btn btn-default">Login</button>
+                        <button id="_submit" name="_submit" type="submit" className="btn btn-primary">Login</button>
                     </form>
                 </div>
             </div>
