@@ -13,10 +13,11 @@ var complexitystyle = {
 var RegisterScreen = React.createClass({
     mixins: [Navigation],
     getInitialState: function() {
+        complexitystyle.width = '0%';
         return {
             password: '',
             password_confirm: '',
-            complexity: ''
+            complexity: 0
         };
     },
     handleEmailChange: function(e)
@@ -29,7 +30,7 @@ var RegisterScreen = React.createClass({
         var component = this;
         var complexify;
         this.setState({'password': e.target.value});
-        $(this.refs.password.getDOMNode()).complexify({}, function(valid, complexity) {
+        $(this.refs.password.getDOMNode()).complexify({strengthScaleFactor: 0.5}, function(valid, complexity) {
             complexify = parseInt(complexity);
         });
         this.setState({complexity: complexify.toString()});
@@ -96,18 +97,20 @@ var RegisterScreen = React.createClass({
                             <input type="text" value={this.props.email} disabled="true" className="form-control" id="username" name="fos_user_registration_form[username]" placeholder="Username" />
                         </div>
                         <div className="form-group">
-                            <label className="control-label" htmlFor="password">Password {this.state.complexity > 0 ? '(complexity: ' + this.state.complexity + '/100)' : ''}</label>
-                            <div className="progress">
-                                <div className={'progress-bar progress-bar-' + progressBarType} role="progressbar" aria-valuenow={this.state.complexity} aria-valuemin="0" aria-valuemax="100" style={complexitystyle}>
-                                    <span class="sr-only">{this.state.complexity}%</span>
-                                </div>
-                            </div>
+                            <label className="control-label" htmlFor="password">Password</label>
                             <input type="password" value={this.state.password} onChange={this.handlePasswordChange} ref="password" className="form-control" id="password" name="fos_user_registration_form[plainPassword][first]" placeholder="Password" />
                         </div>
                         <div className="form-group">
                             <label className="control-label" htmlFor="password_confirm">Confirm Password</label>
                             <input type="password" value={this.state.password_confirm} onChange={this.handlePasswordConfirmChange} className="form-control" id="password_confirm" name="fos_user_registration_form[plainPassword][second]" placeholder="Confirm Password" />
                         </div>
+                        <label className="control-label">Complexity {this.state.complexity > 0 ? '(' + this.state.complexity + '/100)' : ''}</label>
+                        <div className="progress">
+                            <div className={'progress-bar progress-bar-' + progressBarType} role="progressbar" aria-valuenow={this.state.complexity} aria-valuemin="0" aria-valuemax="100" style={complexitystyle}>
+                                <span class="sr-only">{this.state.complexity}%</span>
+                            </div>
+                        </div>
+
                         <br />
                         <button type="button" onClick={this.doRegister} className="btn btn-success">Register <i className="fa fa-fw fa-check"></i></button>
                         {message}
