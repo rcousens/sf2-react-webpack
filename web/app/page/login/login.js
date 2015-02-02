@@ -23,7 +23,6 @@ var LoginScreen = require('./component/login-screen/LoginScreen.react.js').Login
 var RegisterScreen = require('./component/register-screen/RegisterScreen.react.js').RegisterScreen;
 var ForgotScreen = require('./component/forgot-screen/ForgotScreen.react.js').ForgotScreen;
 
-
 var App = React.createClass({
     mixins: [ReactRouter.Navigation, Reflux.connect(LoginStore, "loginData"), ReactRouter.State ],
     render: function () {
@@ -44,7 +43,7 @@ var Index = React.createClass({
     render: function () {
         return (
             <Content>
-                <LoginScreen message={this.props.data.message} username={this.props.data.username} />
+                <LoginScreen message={this.props.data.message} email={this.props.data.email} />
             </Content>
         );
     }
@@ -54,7 +53,7 @@ var Register = React.createClass({
     render: function () {
         return (
             <Content>
-                <RegisterScreen message={this.props.data.message} errors={this.props.data.errors} username={this.props.data.username} />
+                <RegisterScreen message={this.props.data.message} errors={this.props.data.errors} email={this.props.data.email} />
             </Content>
         );
     }
@@ -64,7 +63,7 @@ var Forgot = React.createClass({
     render: function() {
         return (
             <Content>
-                <ForgotScreen username={this.props.data.username} />
+                <ForgotScreen email={this.props.data.email} />
             </Content>
         );
     }

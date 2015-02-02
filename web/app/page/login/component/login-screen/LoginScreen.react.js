@@ -3,21 +3,20 @@ var LoginActions = require('../../login-actions.js');
 
 var LoginScreen = React.createClass({
     handleUsernameChange: function(e) {
-        LoginActions.usernameChange(e.target.value);
+        LoginActions.emailChange(e.target.value);
     },
     render: function () {
         var csrf_token = window.TS.embed.csrf_token;
         var message = this.props.message ? (<p className="help-block">{this.props.message}</p>) : '';
-        var username = this.props.username ? this.props.username : window.TS.embed.last_username;
         return (
             <div className="row">
                 <div className="jumbotron">
-                    <h2>Login</h2>
+                    <h2 className="text-center">Login</h2>
                     <form method="POST" action={window.Routing.generate('security_check')}>
                         <input type="hidden" name="_csrf_token" value={csrf_token} />
                         <div className="form-group">
                             <label htmlFor="username">Email Address</label>
-                            <input type="email" className="form-control" id="username" name="_username" defaultValue={username} onChange={this.handleUsernameChange} placeholder="Email Address" />
+                            <input type="email" className="form-control" id="username" name="_username" defaultValue={this.props.email} onChange={this.handleUsernameChange} placeholder="Email Address" />
                         </div>
                         <div className="form-group">
                             <label htmlFor="password">Password</label>

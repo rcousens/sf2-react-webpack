@@ -3,7 +3,7 @@ var Reflux = require('reflux');
 var LoginActions = Reflux.createActions([
     "registrationSuccessful",
     "registrationFailed",
-    "usernameChange"
+    "emailChange"
 ]);
 
 module.exports = LoginActions;
