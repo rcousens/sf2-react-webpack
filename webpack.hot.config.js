@@ -1,22 +1,24 @@
 var webpack = require('webpack');
 var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
 
+
 module.exports = {
     debug: true,
     devtool: "eval",
-    entry: {
-        //test: "./web/app/entry.js",
-        login: "./web/app/page/login/login.js",
-        dashboard: "./web/app/page/dashboard/dashboard.js"
-    },
+    entry: [
+        "webpack-dev-server/client?http://localhost:3000",
+        "webpack/hot/only-dev-server",
+        "./web/app/page/login/login.js"
+    ],
     output: {
+        filename: "hot.js",
+        //filename: "[name].entry.chunk.js"
         path: __dirname + "/web/dist/",
-        publicPath: "/dist/",
-        filename: "[name].entry.chunk.js"
+        publicPath: "http://localhost:3000/dist/"
     },
     module: {
         loaders: [
-            { test: /\.js$/, loader: "jsx-loader?harmony" },
+            { test: /\.js$/, loaders: ["react-hot", "jsx-loader?harmony"] },
             { test: /\.less$/, loader: "style-loader!css-loader!less-loader" },
             { test: /\.css$/, loader: "style-loader!css-loader" },
             { test: /\.(png|jpg)$/, loader: "url-loader?limit=8192"},
@@ -34,6 +36,8 @@ module.exports = {
             jQuery: "jquery",
             "window.jQuery": "jquery"
         }),
-        new CommonsChunkPlugin("commons.chunk.js")
+        //new CommonsChunkPlugin("commons.chunk.js"),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin()
     ]
 };
