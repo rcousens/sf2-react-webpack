@@ -2,6 +2,8 @@ var React = require('react');
 
 var LoginActions = require('../../login-actions.js');
 
+var RegisterScreen = require('../register-screen/RegisterScreen.react.js').RegisterScreen;
+
 var ForgotScreen = React.createClass({
     handleUsernameChange: function(e) {
         LoginActions.emailChange(e.target.value);

@@ -4,9 +4,7 @@ var DashboardScreen = React.createClass({
     render: function () {
         return (
             <div className="row">
-                <div className="jumbotron">
-                    <h2>Dashboard</h2>
-                </div>
+                <h2>Dashboard</h2>
             </div>
         );
     }

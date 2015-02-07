@@ -3,8 +3,10 @@ var Link = require('react-router').Link;
 var State = require('react-router').State;
 
 var TopNavBar = React.createClass({
+    handleViewProfile: function() {
+        this.props.actions.showViewProfileModal();
+    },
     render: function () {
-
         var dashboardActive = (this.props.active === 'dashboard') ? 'active' : '';
         var teamActive = (this.props.active === 'team') ? 'active' : '';
         var username = this.props.username;
@@ -26,7 +28,14 @@ var TopNavBar = React.createClass({
                             <li className={teamActive}><a href="#">Team</a></li>
                         </ul>
                         <ul className="nav navbar-nav navbar-right">
-                        <li><a href="#"><i className="fa fa-fw fa-user"></i>{username}</a></li>
+                        <li className="dropdown">
+                            <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i className="fa fa-fw fa-user"></i>{username}<span className="caret"></span></a>
+                            <ul className="dropdown-menu" role="menu">
+                                <li><a href="#" onClick={this.handleViewProfile}>View Profile</a></li>
+                                <li className="divider"></li>
+                                <li><a href="/logout">Logout</a></li>
+                            </ul>
+                        </li>
                         </ul>
                     </div>
                 </div>
